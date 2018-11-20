@@ -14,15 +14,15 @@ public class UserService {
     private MongoClient client = new MongoClient("localhost", 27017);
     private Datastore datastore = new Morphia().createDatastore(client,"People");
 
-    public People addPost (People people){
-        datastore.save(people);
-        return people;
+    public People addPost (People person){
+        datastore.save(person);
+        return person;
     }
 
     public People getPost (String document) throws DocumentNotReconizedException {
-        People people = datastore.find(People.class, "document", document).get();
-        if(people != null){
-            return people;
+        People person = datastore.find(People.class, "document", document).get();
+        if(person != null){
+            return person;
         }
         else{
             System.out.println("Document Not Found in Database");

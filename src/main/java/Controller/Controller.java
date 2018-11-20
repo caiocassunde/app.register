@@ -35,11 +35,11 @@ public class Controller {
         try {
             post("/registrer", (req, res) -> {
                 res.type("application/json");
-                People people = gson.fromJson(req.body(), People.class);
+                People person = gson.fromJson(req.body(), People.class);
                 Validation validation = new Validation();
-                List<ReturnError> list = validation.validationRequirePost(people);
+                List<ReturnError> list = validation.validationRequirePost(person);
                 if (list.isEmpty()){
-                    return userservice.addPost(people);
+                    return userservice.addPost(person);
                 }
                 else{
                     return list;
@@ -50,8 +50,8 @@ public class Controller {
             get("/registrer/:document", (req, res) -> {
                 res.type("application/json");
                try {
-                    People people = userservice.getPost(req.params("document"));
-                    return people;
+                    People person = userservice.getPost(req.params("document"));
+                    return person;
                } catch (DocumentNotReconizedException e) {
                     e.printStackTrace();
                     ReturnError ret = new ReturnError();
