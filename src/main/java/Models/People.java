@@ -35,7 +35,7 @@ public class People {
         return age;
     }
 
-    public void setIdade(String age) {
+    public void setAge(String age) {
         this.age = age;
     }
 }

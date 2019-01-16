@@ -1,11 +1,17 @@
 package Controller;
 
+import static Utils.ChamadaHttp.chamadaHttp;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
+import Utils.Http;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.mongodb.MongoClient;
 
 import Exception.DocumentNotReconizedException;
@@ -44,7 +50,6 @@ public class Controller {
                 else{
                     return list;
                 }
-
             }, gson::toJson);
 
             get("/registrer/:document", (req, res) -> {
@@ -99,6 +104,13 @@ public class Controller {
                     return ret;
                 }
             }, gson::toJson);
+            /*Código de exemplo, chamando outra api
+            get("registrer/api/chamada", (req, res) -> {
+                res.type("application/json");
+                String a = chamadaHttp();
+                JsonObject objectJson = new Gson().fromJson(chamadaHttp(), JsonObject.class);
+                return objectJson;
+            }, gson::toJson);*/
         } catch (Exception e){
             ReturnError ret = new ReturnError();
             ret.setCode("500");
