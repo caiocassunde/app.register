@@ -2,6 +2,12 @@ plugins {
     id 'java'
     id 'application'
 }
+mainClassName = 'Controller.Controller'
+
+jar {
+    baseName = 'app.register'
+    version =  '0.1.0'
+}
 
 group 'com.caio'
 version '1.0-SNAPSHOT'
