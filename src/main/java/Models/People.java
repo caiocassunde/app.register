@@ -9,7 +9,10 @@ public class People {
     private String id;
     private String document;
     private String name;
-    private String age;
+    private String email;
+    private String adress;
+    private String state;
+    private String cep;
 
     public String getId() {
         return id;
@@ -17,6 +20,38 @@ public class People {
 
     public String getDocument() {
         return document;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public void setDocument(String document) {
@@ -29,13 +64,5 @@ public class People {
 
     public void setName(String nome) {
         this.name = nome;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
     }
 }

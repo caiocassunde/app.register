@@ -1,8 +1,8 @@
 package Controller;
 
 import static Utils.ChamadaHttp.chamadaHttp;
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
+import static spark.route.HttpMethod.after;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,6 +20,7 @@ import Models.People;
 import Models.ReturnError;
 import Service.UserService;
 import Utils.Validation;
+import spark.Filter;
 
 public class Controller {
     private static UserService userservice = new UserService();
