@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import Utils.CorsFilter;
 import Utils.Http;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -24,9 +25,9 @@ import spark.Filter;
 
 public class Controller {
     private static UserService userservice = new UserService();
-
     public static void main(String[] args) {
-
+        CorsFilter cors = new CorsFilter();
+        cors.apply();
         final Gson gson = new Gson();
 
         try {
