@@ -57,7 +57,7 @@ public class Controller {
             get("/registrer/:document", (req, res) -> {
                 res.type("application/json");
                try {
-                    People person = userservice.getPost(req.params("document"));
+                    People person = userservice.getId(req.params("document"));
                     return person;
                } catch (DocumentNotReconizedException e) {
                     e.printStackTrace();
@@ -72,7 +72,7 @@ public class Controller {
                 res.type("application/json");
                 try {
                     if(req.queryParams().isEmpty()){
-                        return userservice.getAllPost();
+                        return userservice.getAll();
                     }
                     else{
                         if(req.queryParams().size() > 1){
@@ -87,7 +87,7 @@ public class Controller {
                                 ret.setMessage("Query Parameter not recognized");
                                 return ret;
                             } else{
-                                People people = userservice.getPost(req.queryParams("document"));
+                                People people = userservice.getId(req.queryParams("document"));
                                 return people;
                             }
                         }

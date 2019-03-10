@@ -50,13 +50,13 @@ public class Validation {
             retList.add(ret);
         }
 
-        if(people.getAdress() == null){
+        if(people.getAddress() == null){
             ReturnError ret = new ReturnError();
             ret.setCode("008");
             ret.setMessage("Adress not informed");
             retList.add(ret);
         }
-        else if(people.getAdress().isEmpty()){
+        else if(people.getAddress().isEmpty()){
             ReturnError ret = new ReturnError();
             ret.setCode("009");
             ret.setMessage("Invalid Adress");

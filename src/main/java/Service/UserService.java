@@ -19,7 +19,7 @@ public class UserService {
         return person;
     }
 
-    public People getPost (String document) throws DocumentNotReconizedException {
+    public People getId (String document) throws DocumentNotReconizedException {
         People person = datastore.find(People.class, "document", document).get();
         if(person != null){
             return person;
@@ -30,7 +30,7 @@ public class UserService {
         }
     }
 
-   public List<People> getAllPost() throws VoidDBException {
+   public List<People> getAll() throws VoidDBException {
         List<People> list = datastore.find(People.class).asList();
         if (!list.isEmpty()){
             return list;
