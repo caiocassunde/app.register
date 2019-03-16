@@ -5,6 +5,11 @@ plugins {
 mainClassName = 'Controller.Controller'
 
 jar {
+    manifest {
+        attributes(
+                'Main-Class': mainClassName
+        )
+    }
     baseName = 'app.register'
     version =  '0.1.0'
 }
