@@ -1,31 +1,23 @@
 package Controller;
 
-import static Utils.ChamadaHttp.chamadaHttp;
-import static spark.Spark.*;
-import static spark.route.HttpMethod.after;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-
-import Utils.CorsFilter;
-import Utils.Http;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.mongodb.MongoClient;
-
 import Exception.DocumentNotReconizedException;
 import Exception.VoidDBException;
 import Models.People;
 import Models.ReturnError;
 import Service.UserService;
+import Utils.CorsFilter;
 import Utils.Validation;
-import spark.Filter;
+import com.google.gson.Gson;
+import com.mongodb.MongoClient;
+
+import java.util.List;
+
+import static spark.Spark.*;
 
 public class Controller {
     private static UserService userservice = new UserService();
     public static void main(String[] args) {
+        port(8080);
         CorsFilter cors = new CorsFilter();
         cors.apply();
         final Gson gson = new Gson();
@@ -106,6 +98,7 @@ public class Controller {
                     return ret;
                 }
             }, gson::toJson);
+
             /*Código de exemplo, chamando outra api
             get("registrer/api/chamada", (req, res) -> {
                 res.type("application/json");
@@ -113,6 +106,19 @@ public class Controller {
                 JsonObject objectJson = new Gson().fromJson(chamadaHttp(), JsonObject.class);
                 return objectJson;
             }, gson::toJson);*/
+
+            delete("registrer/:document", (req, res) -> {
+                res.type("application/json");
+                try {
+                    return userservice.deleteId(req.params("document"));
+                } catch (DocumentNotReconizedException e) {
+                    e.printStackTrace();
+                    ReturnError ret = new ReturnError();
+                    ret.setCode("106");
+                    ret.setMessage("Document Not Found in Database");
+                    return ret;
+                }
+            },gson::toJson);
         } catch (Exception e){
             ReturnError ret = new ReturnError();
             ret.setCode("500");

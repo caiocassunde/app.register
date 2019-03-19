@@ -14,9 +14,10 @@ public class UserService {
     private MongoClient client = new MongoClient("localhost", 27017);
     private Datastore datastore = new Morphia().createDatastore(client,"People");
 
-    public People addPost (People person){
+    public String addPost (People person){
         datastore.save(person);
-        return person;
+        String ret = "Customer successfully joined";
+        return ret;
     }
 
     public People getId (String document) throws DocumentNotReconizedException {
@@ -38,6 +39,19 @@ public class UserService {
         else{
             System.out.println("Empty Database");
             throw  new VoidDBException();
+        }
+    }
+
+    public String deleteId (String document) throws DocumentNotReconizedException {
+        People person = this.getId(document);
+        if(person != null){
+            datastore.delete(person);
+            String ret = "customer successfully deleted";
+            return ret;
+        }
+        else{
+            System.out.println("Document Not Found in Database");
+            throw new DocumentNotReconizedException();
         }
     }
 }

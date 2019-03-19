@@ -1,10 +1,11 @@
 package Utils;
 //import com.mpaw.app.controllers.Apply;
-import java.util.HashMap;
 import spark.Filter;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
+
+import java.util.HashMap;
 
 /**
  * Really simple helper for enabling CORS in a spark application;
